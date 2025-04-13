@@ -2,6 +2,8 @@ package com.example.backendproject.controller;
 
 import com.example.backendproject.entity.User;
 import com.example.backendproject.repository.UserRepository;
+import com.example.backendproject.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,19 +11,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping
-    public User createUser( @RequestBody User user) {
-        return userRepository.save(user);
+    public User createUser( ) {
+        User user = new User();
+        user.setName("Aditya Jha");
+        user.setEmail("aditya@gmail.com");
+        user.setPassword("@123pass");
+        System.out.println("User Created :"+ user);
+        return userService.saveUser(user);
     }
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 }
