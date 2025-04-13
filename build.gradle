@@ -37,6 +37,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     runtimeOnly 'org.postgresql:postgresql'
+    compileOnly 'org.projectlombok:lombok:1.18.24'  // Latest version
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 generateJava {
